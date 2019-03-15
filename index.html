@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Word game</title>
+</head>
+<body>
+<div class="all">
+    <header><h1>WORD GAME</h1></header>
+    <main>
+        <div>
+                <form>
+                    <p>Guess a letter</p><br>
+                    <input id="demo" type="text" name="letter" placeholder="ex 'M'">
+                    <br><br>
+                    <input id ="myBtn" type="button" value="Submit">
+                  </form> 
+  
+        </div>
+        <h2></h2>
+        <script>
+
+            
+
+document.querySelector("input[type=button]").addEventListener("click", function(){
+  let getLetter=document.querySelector("input[type=text]").value;
+  return getLetter;
+});
+    
+        let wordLetters = ['p', 'r', 'o', 't','e','i','n','b','a','r'];
+        let guessedLetters  = ['_', '_', '_', '_','_', '_', '_', '_','_', '_',];
+
+      function guessLetter(getLetter) {
+          let goodGuess = false;
+          let moreToGuess = false;
+          for (var i = 0; i < wordLetters.length; i++) {
+              if (wordLetters[i] == getLetter) {
+                  guessedLetters[i] = getLetter;
+                  goodGuess = true;
+              }
+              if (guessedLetters[i] == '_') {
+                  moreToGuess = true;
+              }
+          }
+          if (goodGuess == true) {
+            document.querySelector("p").innerHTML ='Yay, you found a letter!';
+            document.querySelector("h2").innerHTML = guessedLetters.join('');
+              if (!moreToGuess) {
+                document.querySelector("p").innerHTML ='YOU WON!';
+              } 
+          } else {
+            document.querySelector("p").innerHTML ='Oh noes, thats not right!';
+          }
+          document.querySelector("p").innerHTML = "You guessed " + getLetter;
+      }
+      
+      guessLetter(getLetter);
+   
+      
+        </script>
+        
+    </main>
+    <footer></footer>
+</div>
+</body>
+</html>
